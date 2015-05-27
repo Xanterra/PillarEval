@@ -29,5 +29,12 @@ public class VendingMachineTest {
 		assertEquals("10", vm4.insert(2,1));
 		assertEquals("20", vm4.insert(2,1));
 	}
+	
+	@Test
+	public void whenQuarterIsInsertedValueIncreasesBy25() {
+		VendingMachine vm5 = new VendingMachine();
+		assertEquals("25", vm5.insert(3,3));
+		assertEquals("50", vm5.insert(3,3));
+	}
 
 }

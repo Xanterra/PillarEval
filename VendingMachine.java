@@ -20,13 +20,16 @@ public class VendingMachine {
 	
 	public String insert(Integer weight, Integer diameter) {
 		/**
-		 * @return INSERT COIN and additional text to pass the test
+		 * @return total value
 		 */
 		if(weight==2&diameter==2){
 			numNickels++;
 		}
 		if(weight==2&diameter==1){
 			numDimes++;
+		}
+		if(weight==3&diameter==3){
+			numQuarters++;
 		}
 		return getValue();
 	}
