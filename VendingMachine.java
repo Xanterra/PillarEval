@@ -22,8 +22,11 @@ public class VendingMachine {
 		/**
 		 * @return INSERT COIN and additional text to pass the test
 		 */
-		if(weight==1&diameter==1){
+		if(weight==2&diameter==2){
 			numNickels++;
+		}
+		if(weight==2&diameter==1){
+			numDimes++;
 		}
 		return getValue();
 	}

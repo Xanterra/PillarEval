@@ -8,7 +8,7 @@ public class VendingMachineTest {
 	@Test
 	public void whenCoinsAreInsertedInsertCoinIsNotDisplayed() {
 		VendingMachine vm1 = new VendingMachine();
-		assertFalse(vm1.insert(1,1).equals("INSERT COIN"));
+		assertFalse(vm1.insert(2,2).equals("INSERT COIN"));
 	}
 	
 	@Test
@@ -20,7 +20,14 @@ public class VendingMachineTest {
 	@Test
 	public void whenNickelIsInsertedValueIncreasesByFive() {
 		VendingMachine vm2 = new VendingMachine();
-		assertEquals("5", vm2.insert(1,1));
-		assertEquals("10", vm2.insert(1,1));
+		assertEquals("5", vm2.insert(2,2));
+		assertEquals("10", vm2.insert(2,2));
 	}
+	@Test
+	public void whenDimeIsInsertedValueIncreasesByTen() {
+		VendingMachine vm4 = new VendingMachine();
+		assertEquals("10", vm4.insert(2,1));
+		assertEquals("20", vm4.insert(2,1));
+	}
+
 }
