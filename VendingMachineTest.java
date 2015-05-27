@@ -12,6 +12,12 @@ public class VendingMachineTest {
 	}
 	
 	@Test
+	public void whenCoinsAreNotInsertedInsertCoinIsDisplayed() {
+		VendingMachine vm3 = new VendingMachine();
+		assertEquals(vm3.insert(), "INSERT COIN");
+	}
+	
+	@Test
 	public void whenNickelIsInsertedValueIncreasesByFive() {
 		VendingMachine vm2 = new VendingMachine();
 		assertEquals("5", vm2.insert(1,1));
