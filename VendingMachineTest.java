@@ -36,5 +36,10 @@ public class VendingMachineTest {
 		assertEquals("25", vm5.insert(3,3));
 		assertEquals("50", vm5.insert(3,3));
 	}
+	@Test
+	public void whenPennyIsInsertedReturnsErrorMessage() {
+		VendingMachine vm6 = new VendingMachine();
+		assertEquals("INVALID COIN", vm6.insert(1,1));
+	}
 
 }

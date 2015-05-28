@@ -24,14 +24,17 @@ public class VendingMachine {
 		 */
 		if(weight==2&diameter==2){
 			numNickels++;
+			return getValue();
 		}
 		if(weight==2&diameter==1){
 			numDimes++;
+			return getValue();
 		}
 		if(weight==3&diameter==3){
 			numQuarters++;
+			return getValue();
 		}
-		return getValue();
+		else return "INVALID COIN";
 	}
 	public String insert() {
 		/**
