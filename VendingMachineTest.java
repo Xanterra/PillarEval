@@ -163,4 +163,17 @@ public class VendingMachineTest {
 		assertEquals(vm.select(1), "SOLD OUT");
 		assertEquals("INSERT COIN", vm.select(1));
 	}
+	
+	/* Exact Change Only */
+	@Test
+	public void whenMachineCannotMakeChangeItWillDisplayExactChangeOnly() {
+		VendingMachine vm = new VendingMachine();
+		for(int i=0; i<=7; i++){
+			for(int j=0; j<=2; j++){
+				vm.insert(3,3);
+			}
+			assertEquals("THANK YOU", vm.select(3));
+		}
+		assertEquals("EXACT CHANGE ONLY", vm.insert());
+	}
 }

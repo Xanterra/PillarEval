@@ -15,11 +15,17 @@ public class VendingMachine {
 	private Integer chipsPrice = 50;
 	private Integer candyPrice = 65;
 	private Integer cokeStash = 5;
-	private Integer chipsStash = 5;
-	private Integer candyStash = 5;
+	private Integer chipsStash = 10;
+	private Integer candyStash = 15;
+	private Integer nickelStash = 5;
+	private Integer dimeStash = 5;
+	private Integer quarterStash = 5;
 	private Boolean previouslySoldOutChecked = false;
 	
 	private String getValue(){
+		if(dimeStash<1&&nickelStash<2){
+			return "EXACT CHANGE ONLY";
+		}
 		if(numNickels==0&&numDimes==0&&numQuarters==0){
 			return "INSERT COIN";
 		}
@@ -45,7 +51,23 @@ public class VendingMachine {
 				trayNickels++;//return a nickel
 				remaining -= 5;
 			}
+			if((remaining<25&&numDimes==0&&numNickels<2)||(remaining<10&&numNickels==0)){
+				if(dimeStash>0&&remaining>=10){
+					dimeStash--;
+					trayDimes++;//return a dime
+					remaining -= 10;
+				}
+				if(nickelStash>0&&remaining>=5){
+					nickelStash--;
+					trayNickels++;//return a nickel
+					remaining -= 5;
+				}
+				else break;
+			}
 		}
+		quarterStash += numQuarters;
+		dimeStash += numDimes;
+		nickelStash += numNickels;
 		numQuarters = 0;
 		numDimes = 0;
 		numNickels = 0;
@@ -91,13 +113,16 @@ public class VendingMachine {
 	}
 	public String insert() {
 		/**
-		 * @return total value
+		 * @return total value or INSERT COIN if 0 or EXACT CHANGE REQUIRED if required
 		 */
 		return getValue();
 	}
 	public String select(Integer selection) {
 		/**
 		 * @return THANK YOU if product dispensed
+		 * Adds change to the tray. If adequate change cannot be dispensed,
+		 * the machine will dispense as much as possible without exceeding
+		 * the amount due.
 		 */
 		if(selection==1){
 			if(cokeStash>0){
