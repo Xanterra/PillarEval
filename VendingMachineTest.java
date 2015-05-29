@@ -4,7 +4,7 @@ import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 
 public class VendingMachineTest {
-
+	/*Select Product*/
 	@Test
 	public void whenCoinsAreInsertedInsertCoinIsNotDisplayed() {
 		VendingMachine vm1 = new VendingMachine();
@@ -41,5 +41,11 @@ public class VendingMachineTest {
 		VendingMachine vm6 = new VendingMachine();
 		assertEquals("INVALID COIN", vm6.insert(1,1));
 	}
-
+	/* Make Change */
+	@Test
+	public void whenColaIsSelectedButNotEnoughPaidPriceDisplayed() {
+		VendingMachine vm7 = new VendingMachine();
+		for(int i=0; i<=2; i++){vm7.insert(3,3);}
+		assertEquals("PRICE 100 CENTS", vm7.select(1));
+	}
 }

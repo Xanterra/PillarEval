@@ -8,14 +8,18 @@ public class VendingMachine {
 	private Integer numNickels = 0;
 	private Integer numDimes = 0;
 	private Integer numQuarters = 0;
+	private Integer cokePrice = 100;
 	
 	private String getValue(){
 		if(numNickels==0&&numDimes==0&&numQuarters==0){
 			return "INSERT COIN";
 		}
 		else{
-			return String.valueOf((numNickels*5)+(numDimes)*10+(numQuarters*25));
+			return String.valueOf(getIntValue());
 		}
+	}
+	private Integer getIntValue(){
+		return((numNickels*5)+(numDimes)*10+(numQuarters*25));
 	}
 	
 	public String insert(Integer weight, Integer diameter) {
@@ -41,6 +45,18 @@ public class VendingMachine {
 		 * @return total value
 		 */
 		return getValue();
+	}
+	public String select(Integer selection) {
+		/**
+		 * @return THANK YOU if product dispensed
+		 */
+		if(selection==1){
+			if(getIntValue()>=cokePrice){
+				return "THANK YOU";
+			}
+			else return "PRICE "+cokePrice+" CENTS";
+		}
+		else return "INVALID PRODUCT SELECTION";
 	}
 	
 }
