@@ -5,6 +5,7 @@ import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 
 public class VendingMachineTest {
+	
 	/*Accept Coins*/
 	@Test
 	public void whenCoinsAreInsertedInsertCoinIsNotDisplayed() {
@@ -42,6 +43,7 @@ public class VendingMachineTest {
 		VendingMachine vm = new VendingMachine();
 		assertEquals("INVALID COIN", vm.insert(1,1));
 	}
+	
 	/* Select Product */
 	@Test
 	public void whenColaIsSelectedButNotEnoughPaidPriceDisplayed() {
@@ -85,6 +87,7 @@ public class VendingMachineTest {
 		assertEquals("THANK YOU", vm.select(2));
 		assertEquals("INSERT COIN", vm.insert());
 	}
+	
 	/* Make Change*/
 	@Test
 	public void whenTooMuchIsPaidForChipsValueIsProperlyReset() {
@@ -100,5 +103,20 @@ public class VendingMachineTest {
 		assertEquals(tempReturn[0], (Integer) 0);
 		assertEquals(tempReturn[1], (Integer) 1);
 		assertEquals(tempReturn[2], (Integer) 1);
+	}
+	
+	/* Return Coins */
+	@Test
+	public void whenCoinsAreInsertedAndReturnRequestedTheyAreProperlyReturned() {
+		VendingMachine vm = new VendingMachine();
+		vm.insert(3,3);
+		vm.insert(2,1);
+		vm.insert(2,2);
+		vm.returnCoins();
+		Integer[] tempReturn = new Integer[3];
+		tempReturn = vm.getCoins();
+		assertEquals(tempReturn[1], (Integer) 1);
+		assertEquals(tempReturn[1], (Integer) 1);
+		assertEquals(tempReturn[1], (Integer) 1);
 	}
 }

@@ -49,7 +49,13 @@ public class VendingMachine {
 	private Integer getIntValue(){
 		return((numNickels*5)+(numDimes)*10+(numQuarters*25));
 	}
-	
+	public void returnCoins(){
+		/**
+		 * Returns all inserted coins to the coin tray. They can be 
+		 * accessed using getCoins now.
+		 */
+		vendChange(0);
+	}
 	public String insert(Integer weight, Integer diameter) {
 		/**
 		 * @return total value
