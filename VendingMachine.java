@@ -18,6 +18,11 @@ public class VendingMachine {
 			return String.valueOf(getIntValue());
 		}
 	}
+	private void resetValue(){
+		numNickels = 0;
+		numDimes = 0;
+		numQuarters = 0;
+	}
 	private Integer getIntValue(){
 		return((numNickels*5)+(numDimes)*10+(numQuarters*25));
 	}
@@ -52,6 +57,7 @@ public class VendingMachine {
 		 */
 		if(selection==1){
 			if(getIntValue()>=cokePrice){
+				resetValue();
 				return "THANK YOU";
 			}
 			else return "PRICE "+cokePrice+" CENTS";

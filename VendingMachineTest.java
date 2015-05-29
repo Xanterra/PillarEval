@@ -1,5 +1,6 @@
 package com.pillar.eval;
 import org.junit.Test;
+import org.junit.Before;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 
@@ -7,8 +8,8 @@ public class VendingMachineTest {
 	/*Select Product*/
 	@Test
 	public void whenCoinsAreInsertedInsertCoinIsNotDisplayed() {
-		VendingMachine vm1 = new VendingMachine();
-		assertFalse(vm1.insert(2,2).equals("INSERT COIN"));
+		VendingMachine vm = new VendingMachine();
+		assertFalse(vm.insert(2,2).equals("INSERT COIN"));
 	}
 	
 	@Test
@@ -47,5 +48,12 @@ public class VendingMachineTest {
 		VendingMachine vm7 = new VendingMachine();
 		for(int i=0; i<=2; i++){vm7.insert(3,3);}
 		assertEquals("PRICE 100 CENTS", vm7.select(1));
+	}
+	@Test
+	public void whenColaIsSelectedAndProperlyPaidCokeDispensedAndValueReset() {
+		VendingMachine vm8 = new VendingMachine();
+		for(int i=0; i<=3; i++){vm8.insert(3,3);}
+		assertEquals("THANK YOU", vm8.select(1));
+		assertEquals("INSERT COIN", vm8.insert());
 	}
 }
