@@ -115,8 +115,27 @@ public class VendingMachineTest {
 		vm.returnCoins();
 		Integer[] tempReturn = new Integer[3];
 		tempReturn = vm.getCoins();
+		assertEquals(tempReturn[0], (Integer) 1);
 		assertEquals(tempReturn[1], (Integer) 1);
-		assertEquals(tempReturn[1], (Integer) 1);
-		assertEquals(tempReturn[1], (Integer) 1);
+		assertEquals(tempReturn[2], (Integer) 1);
+	}
+	@Test
+	public void whenNothingIsInsertedReturnCoinsReturnsNothing() {
+		VendingMachine vm = new VendingMachine();
+		vm.returnCoins();
+		Integer[] tempReturn = new Integer[3];
+		tempReturn = vm.getCoins();
+		assertEquals(tempReturn[0], (Integer) 0);
+		assertEquals(tempReturn[1], (Integer) 0);
+		assertEquals(tempReturn[2], (Integer) 0);
+	}
+	@Test
+	public void whenCoinsAreReturnedVendingMachineProperlyResetsCredit() {
+		VendingMachine vm = new VendingMachine();
+		vm.insert(3,3);
+		vm.insert(2,1);
+		vm.insert(2,2);
+		vm.returnCoins();
+		assertEquals("INSERT COIN", vm.insert());
 	}
 }
