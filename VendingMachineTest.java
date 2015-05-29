@@ -151,4 +151,16 @@ public class VendingMachineTest {
 		}
 		assertEquals(vm.select(1), "SOLD OUT");
 	}
+	@Test
+	public void whenDisplayIsCheckedASecondTimeInsertCoinIsDisplayed() {
+		VendingMachine vm = new VendingMachine();
+		for(int i=0; i<=4; i++){
+			for(int j=0; j<=3; j++){
+				vm.insert(3,3);
+			}
+			assertEquals(vm.select(1), "THANK YOU");
+		}
+		assertEquals(vm.select(1), "SOLD OUT");
+		assertEquals("INSERT COIN", vm.select(1));
+	}
 }

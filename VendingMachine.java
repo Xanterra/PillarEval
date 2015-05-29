@@ -109,7 +109,10 @@ public class VendingMachine {
 				else return "PRICE "+cokePrice+" CENTS";
 			}
 			else if (previouslySoldOutChecked) return getValue();
-			else return "SOLD OUT";
+			else {
+				previouslySoldOutChecked = true;
+				return "SOLD OUT";
+			}
 		}
 		else if(selection==2){
 			if(chipsStash>0){
@@ -121,7 +124,10 @@ public class VendingMachine {
 				else return "PRICE "+chipsPrice+" CENTS";
 			}
 			else if (previouslySoldOutChecked) return getValue();
-			else return "SOLD OUT";
+			else {
+				previouslySoldOutChecked = true;
+				return "SOLD OUT";
+			}
 		}
 		else if(selection==3){
 			if(candyStash>0){
@@ -133,7 +139,10 @@ public class VendingMachine {
 				else return "PRICE "+candyPrice+" CENTS";
 			}
 			else if (previouslySoldOutChecked) return getValue();
-			else return "SOLD OUT";
+			else {
+				previouslySoldOutChecked = true;
+				return "SOLD OUT";
+			}
 		}
 		else return "INVALID PRODUCT SELECTION";
 	}
