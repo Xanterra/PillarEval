@@ -14,6 +14,10 @@ public class VendingMachine {
 	private Integer cokePrice = 100;
 	private Integer chipsPrice = 50;
 	private Integer candyPrice = 65;
+	private Integer cokeStash = 5;
+	private Integer chipsStash = 5;
+	private Integer candyStash = 5;
+	private Boolean previouslySoldOutChecked = false;
 	
 	private String getValue(){
 		if(numNickels==0&&numDimes==0&&numQuarters==0){
@@ -45,6 +49,7 @@ public class VendingMachine {
 		numQuarters = 0;
 		numDimes = 0;
 		numNickels = 0;
+		previouslySoldOutChecked = false;
 	}
 	private Integer getIntValue(){
 		return((numNickels*5)+(numDimes)*10+(numQuarters*25));
@@ -95,25 +100,40 @@ public class VendingMachine {
 		 * @return THANK YOU if product dispensed
 		 */
 		if(selection==1){
-			if(getIntValue()>=cokePrice){
-				vendChange(cokePrice);
-				return "THANK YOU";
+			if(cokeStash>0){
+				if(getIntValue()>=cokePrice){
+					vendChange(cokePrice);
+					cokeStash--;
+					return "THANK YOU";
+				}
+				else return "PRICE "+cokePrice+" CENTS";
 			}
-			else return "PRICE "+cokePrice+" CENTS";
+			else if (previouslySoldOutChecked) return getValue();
+			else return "SOLD OUT";
 		}
 		else if(selection==2){
-			if(getIntValue()>=chipsPrice){
-				vendChange(chipsPrice);
-				return "THANK YOU";
+			if(chipsStash>0){
+				if(getIntValue()>=chipsPrice){
+					vendChange(chipsPrice);
+					chipsStash--;
+					return "THANK YOU";
+				}
+				else return "PRICE "+chipsPrice+" CENTS";
 			}
-			else return "PRICE "+chipsPrice+" CENTS";
+			else if (previouslySoldOutChecked) return getValue();
+			else return "SOLD OUT";
 		}
 		else if(selection==3){
-			if(getIntValue()>=candyPrice){
-				vendChange(candyPrice);
-				return "THANK YOU";
+			if(candyStash>0){
+				if(getIntValue()>=candyPrice){
+					vendChange(candyPrice);
+					candyStash--;
+					return "THANK YOU";
+				}
+				else return "PRICE "+candyPrice+" CENTS";
 			}
-			else return "PRICE "+candyPrice+" CENTS";
+			else if (previouslySoldOutChecked) return getValue();
+			else return "SOLD OUT";
 		}
 		else return "INVALID PRODUCT SELECTION";
 	}
