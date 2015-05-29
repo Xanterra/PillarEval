@@ -8,6 +8,9 @@ public class VendingMachine {
 	private Integer numNickels = 0;
 	private Integer numDimes = 0;
 	private Integer numQuarters = 0;
+	private Integer trayNickels = 0;
+	private Integer trayDimes = 0;
+	private Integer trayQuarters = 0;
 	private Integer cokePrice = 100;
 	private Integer chipsPrice = 50;
 	private Integer candyPrice = 65;
@@ -20,10 +23,28 @@ public class VendingMachine {
 			return String.valueOf(getIntValue());
 		}
 	}
-	private void resetValue(){
-		numNickels = 0;
-		numDimes = 0;
+	private void vendChange(Integer selectionValue){
+		Integer remaining = getIntValue()-selectionValue;
+		while (remaining>0){
+			if(numQuarters>0&&remaining>=25){
+				numQuarters--;
+				trayQuarters++;//return a quarter
+				remaining -= 25;
+			}
+			if(numDimes>0&&remaining>=10){
+				numDimes--;
+				trayDimes++;//return a dime
+				remaining -= 10;
+			}
+			if(numNickels>0&&remaining>=5){
+				numNickels--;
+				trayNickels++;//return a nickel
+				remaining -= 5;
+			}
+		}
 		numQuarters = 0;
+		numDimes = 0;
+		numNickels = 0;
 	}
 	private Integer getIntValue(){
 		return((numNickels*5)+(numDimes)*10+(numQuarters*25));
@@ -47,6 +68,16 @@ public class VendingMachine {
 		}
 		else return "INVALID COIN";
 	}
+	public Integer[] getCoins(){
+		/**
+		 * @return coins currently in coin tray. Also clears the coin tray.
+		 */
+		Integer[] A = {trayQuarters,trayDimes,trayNickels};
+		trayQuarters = 0;
+		trayDimes = 0;
+		trayNickels = 0;
+		return A;
+	}
 	public String insert() {
 		/**
 		 * @return total value
@@ -59,21 +90,21 @@ public class VendingMachine {
 		 */
 		if(selection==1){
 			if(getIntValue()>=cokePrice){
-				resetValue();
+				vendChange(cokePrice);
 				return "THANK YOU";
 			}
 			else return "PRICE "+cokePrice+" CENTS";
 		}
 		else if(selection==2){
 			if(getIntValue()>=chipsPrice){
-				resetValue();
+				vendChange(chipsPrice);
 				return "THANK YOU";
 			}
 			else return "PRICE "+chipsPrice+" CENTS";
 		}
 		else if(selection==3){
 			if(getIntValue()>=candyPrice){
-				resetValue();
+				vendChange(candyPrice);
 				return "THANK YOU";
 			}
 			else return "PRICE "+candyPrice+" CENTS";

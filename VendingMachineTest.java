@@ -85,4 +85,20 @@ public class VendingMachineTest {
 		assertEquals("THANK YOU", vm.select(2));
 		assertEquals("INSERT COIN", vm.insert());
 	}
+	
+	@Test
+	public void whenTooMuchIsPaidForChipsValueIsProperlyReset() {
+		VendingMachine vm = new VendingMachine();
+		vm.insert(3,3);
+		vm.insert(3,3);
+		vm.insert(2,1);
+		vm.insert(2,2);
+		assertEquals("THANK YOU", vm.select(2));
+		assertEquals("INSERT COIN", vm.insert());
+		Integer[] tempReturn = new Integer[3];
+		tempReturn = vm.getCoins();
+		assertEquals(tempReturn[0], (Integer) 0);
+		assertEquals(tempReturn[1], (Integer) 1);
+		assertEquals(tempReturn[2], (Integer) 1);
+	}
 }
