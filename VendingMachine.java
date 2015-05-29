@@ -10,6 +10,7 @@ public class VendingMachine {
 	private Integer numQuarters = 0;
 	private Integer cokePrice = 100;
 	private Integer chipsPrice = 50;
+	private Integer candyPrice = 65;
 	
 	private String getValue(){
 		if(numNickels==0&&numDimes==0&&numQuarters==0){
@@ -69,6 +70,13 @@ public class VendingMachine {
 				return "THANK YOU";
 			}
 			else return "PRICE "+chipsPrice+" CENTS";
+		}
+		else if(selection==3){
+			if(getIntValue()>=candyPrice){
+				resetValue();
+				return "THANK YOU";
+			}
+			else return "PRICE "+candyPrice+" CENTS";
 		}
 		else return "INVALID PRODUCT SELECTION";
 	}
