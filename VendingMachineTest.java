@@ -56,4 +56,18 @@ public class VendingMachineTest {
 		assertEquals("THANK YOU", vm8.select(1));
 		assertEquals("INSERT COIN", vm8.insert());
 	}
+	@Test
+	public void whenChipsIsSelectedButNotEnoughPaidPriceDisplayed() {
+		VendingMachine vm7 = new VendingMachine();
+		vm7.insert(3,3);
+		assertEquals("PRICE 50 CENTS", vm7.select(2));
+	}
+	@Test
+	public void whenChipsIsSelectedAndProperlyPaidChipsDispensedAndValueReset() {
+		VendingMachine vm8 = new VendingMachine();
+		vm8.insert(3,3);
+		vm8.insert(3,3);
+		assertEquals("THANK YOU", vm8.select(2));
+		assertEquals("INSERT COIN", vm8.insert());
+	}
 }
