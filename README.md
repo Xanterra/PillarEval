@@ -1,5 +1,5 @@
 # VM Kata
-Vending Machine Kata work
+Vending Machine Kata
 
 Source: https://github.com/guyroyse/vending-machine-kata
 
